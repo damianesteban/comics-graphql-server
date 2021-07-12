@@ -1,0 +1,30 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+datasource db {
+  provider = "postgresql"
+  url      = "postgresql://postgres:my-secret@db:5432/prisma"
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model Comic {
+  id        Int      @default(autoincrement()) @id
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  title     String   @db.VarChar(255)
+  publisher String   @db.VarChar(255)
+  issueNumber Int    @db.Integer
+  owner    User     @relation(fields: [ownerId], references: [id])
+  ownerId  Int
+}
+
+
+model User {
+  id      Int      @default(autoincrement()) @id
+  email   String   @unique
+  name    String?
+  comics  Comic[]
+}

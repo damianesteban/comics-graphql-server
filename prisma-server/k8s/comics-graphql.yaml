@@ -1,0 +1,35 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: comics-graphql
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: comics-graphql
+  template:
+    metadata:
+      labels:
+        app: comics-graphql
+    spec:
+      containers:
+        - name: comics-graphql
+          image: damianesteban/comics-graphql-server:latest
+          ports:
+            - containerPort: 4000
+          env:
+            - name: DATABASE_URL
+              value: postgresql://prisma:password@db:5432/prisma
+          imagePullPolicy: Always
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: comics-graphql
+spec:
+  selector:
+    app: comics-graphql
+  ports:
+    - port: 80
+      targetPort: 4000
+  type: LoadBalancer
