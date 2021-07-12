@@ -19,7 +19,10 @@ spec:
             - containerPort: 4000
           env:
             - name: DATABASE_URL
-              value: postgresql://prisma:password@db:5432/prisma
+              valueFrom:
+                secretKeyRef:
+                  name: pg-secret
+                  key: DATABASE_URL
           imagePullPolicy: Always
 ---
 apiVersion: v1
