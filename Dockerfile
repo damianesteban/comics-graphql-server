@@ -1,20 +1,3 @@
-# FROM node:14-alpine
-
-# # Create app directory
-# RUN mkdir -p /usr/src/app/
-# WORKDIR /usr/src/app/
-# COPY . /usr/src/app/
-# # Copy initial files
-
-# ENV PORT=4000
-# EXPOSE ${PORT}
-# # Populate npmrc, install dependencies
-# RUN yarn install --production
-# RUN yarn build
-# # Bundle app source
-
-# CMD node ./dist/src/server.js && npx prisma migrate deploy
-
 FROM node:14 AS builder
 
 # Create app directory

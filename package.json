@@ -6,7 +6,7 @@
   "license": "MIT",
   "scripts": {
     "dev": "ts-node-dev --no-notify --respawn --transpile-only src/server",
-    "start": "./node_modules/.bin/prisma migrate && node dist/server",
+    "start": "./node_modules/.bin/prisma migrate dev && node ./dist/src/server.js",
     "clean": "rm -rf dist",
     "build": "yarn -s run clean && yarn -s run generate && tsc",
     "generate": "yarn -s run generate:prisma && yarn -s run generate:nexus",
