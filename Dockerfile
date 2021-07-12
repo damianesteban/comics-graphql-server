@@ -42,4 +42,5 @@ COPY --from=builder /app/prisma ./prisma
 EXPOSE 4000
 
 
+
 CMD [ "yarn", "start" ]
