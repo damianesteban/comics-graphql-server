@@ -8,7 +8,7 @@ spec:
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: go-kube
+  name: comics-graphql
   annotations:
     keel.sh/policy: "glob:dev-*"
 spec:
